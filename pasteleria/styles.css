@@ -1,0 +1,29 @@
+*{
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+}
+
+.to-top{
+
+    background: linear-gradient(to top, yellow, pink, orange);
+}
+.to-right {
+    background: linear-gradient(to-right, yellow, pink, orange );
+}
+.to-bottom {
+    background: linear-gradient(to-bottom, yellow, pink, orange );
+}
+.to-left {
+    background: linear-gradient(to-left, yellow, pink, orange );
+}
+.to-deg {
+    background: linear-gradient(45deg, red 50%, green 25%, orange );
+}
+.radian {
+    
+    border: 1px solid;
+    background: radial-gradient(red, green, orange);
+    width: 120px;
+    height: 120px;
+}
