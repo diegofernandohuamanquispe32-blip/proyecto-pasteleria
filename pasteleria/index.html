@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VENTASBNP - Tienda de Tortas & Postres</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
 
@@ -40,12 +40,12 @@
   <!-- 3. Navegación por Categorías -->
   <nav class="nav">
     <ul class="nav__list">
-      <li class="nav_item"><a href="#" class="navlink nav_link--active">Todos</a></li>
-      <li class="nav_item"><a href="#" class="nav_link">Tortas Finas</a></li>
-      <li class="nav_item"><a href="#" class="nav_link">Pies & Tartas</a></li>
-      <li class="nav_item"><a href="#" class="nav_link">Cupcakes</a></li>
-      <li class="nav_item"><a href="#" class="nav_link">Postres Fríos</a></li>
-      <li class="nav_item"><a href="#" class="nav_link">Ofertas</a></li>
+      <li class="nav__item"><a href="#" class="nav__link nav__link--active">Todos</a></li>
+      <li class="nav__item"><a href="#" class="nav__link">Tortas Finas</a></li>
+      <li class="nav__item"><a href="#" class="nav__link">Pies & Tartas</a></li>
+      <li class="nav__item"><a href="#" class="nav__link">Cupcakes</a></li>
+      <li class="nav__item"><a href="#" class="nav__link">Postres Fríos</a></li>
+      <li class="nav__item"><a href="#" class="nav__link">Ofertas</a></li>
     </ul>
   </nav>
 
@@ -78,7 +78,7 @@
       <!-- TARJETA 1: Favorito -->
       <article class="card card--favorite">
         <div class="card__header">
-          <span class="badge badge--favorite">♥️ FAVORITO</span>
+          <span class="badge badge--favorite">♥ FAVORITO</span>
           <img src="img/selva-negra.jpg" alt="Torta Fina Selva Negra" class="card__image">
         </div>
         <div class="card__body">
@@ -147,7 +147,7 @@
       <article class="card card--out-of-stock">
         <div class="card__header">
           <span class="badge badge--stock">AGOTADO</span>
-          <img src="img/torta-chocolate.jpg" alt="Torta de Chocolate" class="card__image">
+          <img src="./imagenes de pasteleria/chocolate.jpg" alt="Torta de Chocolate" class="card__image">
         </div>
         <div class="card__body">
           <div class="card__meta">
@@ -201,7 +201,7 @@
               <option value="30">30 Porciones - S/ 180.00</option>
             </select>
           </div>
-          <div class="form_group form_group--full">
+          <div class="form__group form__group--full">
             <label for="cDetails" class="form__label">Detalles del Diseño / Temática:</label>
             <textarea id="cDetails" class="form__input" rows="3" placeholder="Describe los colores, nombres o frases en la torta..."></textarea>
           </div>
