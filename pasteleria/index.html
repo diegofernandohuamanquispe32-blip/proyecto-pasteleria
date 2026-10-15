@@ -7,202 +7,164 @@
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-  
-  <!-- Encabezado Principal -->
-  <header class="encabezado">
-    <div class="encabezado_marca">
-      <div class="encabezado_titulos">
-        <h1 class="encabezado_nombre">DULCE SELVA</h1>
-        <p class="encabezado_subtitulo">TIENDA DE TORTAS & POSTRES</p>
+
+  <!-- 1. Barra Superior de Promoción -->
+  <div class="promo-bar">
+    <p class="promo-bar__text">✨ ¡Envíos a domicilio en todo Puerto Maldonado y reservas con 24h de anticipación! ✨</p>
+  </div>
+
+  <!-- 2. Encabezado Principal (BEM) -->
+  <header class="header">
+    <div class="header__brand">
+      <span class="header__logo">🎂</span>
+      <div class="header__titles">
+        <h1 class="header__name">VENTASBNP</h1>
+        <p class="header__subtitle">TIENDA DE TORTAS & POSTRES</p>
       </div>
     </div>
+
     <!-- Buscador -->
-    <div class="barra_busqueda">
-      <input type="text" class="busqueda_input" placeholder="Buscar tortas, postres..">
-      <button class="boton_busqueda" aria-label="Buscar"></button>
+    <div class="search-bar">
+      <input type="text" class="search-bar__input" placeholder="Buscar tortas, cupcakes, donas...">
+      <button class="search-bar__button" aria-label="Buscar">🔍</button>
     </div>
+
     <!-- Acciones de Cliente -->
-    <div class="encabezado_acciones">
-      <button class="boton boton_contorno"> Puerto Maldonado</button>
-      <a href="login.html" class="boton boton_contorno"> Iniciar Sesión / Registrarse</a>
-      <button class="boton boton_carrito"> Mi Carrito <span class="insignia insignia_carrito">0</span></button>
+    <div class="header__actions">
+      <button class="btn btn--outline">📍 Puerto Maldonado</button>
+      <a href="login.html" class="btn btn--outline">👤 Iniciar Sesión / Registrarse</a>
+      <button class="btn btn--cart">🛒 Mi Carrito <span class="badge badge--cart">0</span></button>
     </div>
   </header>
-  <!-- Navegación por Categorías -->
-  <nav class="navegacion">
-    <ul class="navegacion_lista">
-      <li class="navegacion_item"><a href="#" class="navegacion_enlace enlace_activo">Todos</a></li>
-      <li class="navegacion_item"><a href="#" class="navegacion_enlace">Tortas Finas</a></li>
-      <li class="navegacion_item"><a href="#" class="navegacion_enlace">Paiss & Tartas</a></li>
-      <li class="navegacion_item"><a href="#" class="navegacion_enlace">Cupcakes</a></li>
-      <li class="navegacion_item"><a href="#" class="navegacion_enlace">Postres Fríos</a></li>
+
+  <!-- 3. Navegación por Categorías -->
+  <nav class="nav">
+    <ul class="nav__list">
+      <li class="nav__item"><a href="#" class="nav__link nav__link--active">Todos</a></li>
+      <li class="nav__item"><a href="#" class="nav__link">Tortas Finas</a></li>
+      <li class="nav__item"><a href="#" class="nav__link">Pies & Tartas</a></li>
+      <li class="nav__item"><a href="#" class="nav__link">Cupcakes</a></li>
+      <li class="nav__item"><a href="#" class="nav__link">Postres Fríos</a></li>
+      <li class="nav__item"><a href="#" class="nav__link">Ofertas</a></li>
     </ul>
   </nav>
-  <!-- Banner de Presentación -->
-  <section class="portada">
-    <div class="portada_contenido">
-      <span class="insignia insignia_portada">REPOSTERÍA</span>
-      <h2 class="portada_titulo">Tortas Al Gusto del Cliente</h2>
-      <p class="portada_descripcion">Tortas deliciosas. Pasteles recién horneados con ingredientes premium para hacer inolvidable tu evento.</p>
+
+  <!-- 4. Banner de Presentación (Hero) -->
+  <section class="hero">
+    <div class="hero__content">
+      <span class="badge badge--hero">REPOSTERÍA ARTESANAL</span>
+      <h2 class="hero__title">Diseño de Tortas Al Gusto del Cliente</h2>
+      <p class="hero__description">Transformamos tus ideas en deliciosas obras de arte. Pasteles recién horneados con ingredientes premium para hacer inolvidable tu evento.</p>
     </div>
   </section>
-  <!-- Catálogo de Productos -->
-  <main class="contenedor_principal">
-    <div class="encabezado_catalogo">
-      <h2 class="catalogo_titulo">Nuestra Vitrina Dulce</h2>
-      <div class="catalogo_filtro">
-        <label for="ordenar" class="catalogo_etiqueta">Ordenar por:</label>
-        <select id="ordenar" class="catalogo_select">
+
+  <!-- 5. Catálogo de Productos (Grilla Responsiva BEM) -->
+  <main class="main-container">
+    <div class="catalog-header">
+      <h2 class="catalog-header__title">Nuestra Vitrina Dulce</h2>
+      <div class="catalog-header__filter">
+        <label for="sort" class="catalog-header__label">Ordenar por:</label>
+        <select id="sort" class="catalog-header__select">
           <option value="popular">Más populares</option>
           <option value="precio_menor">Precio: Menor a Mayor</option>
           <option value="precio_mayor">Precio: Mayor a Menor</option>
         </select>
       </div>
     </div>
-    <!-- Grilla de Productos -->
-    <section class="cuadricula_productos">
-      <!-- TARJETA 1 -->
-      <article class="tarjeta tarjeta_oferta">
-        <div class="tarjeta_encabezado">
-          <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=500" alt="Torta de Fresas con Chantilly" class="tarjeta_imagen">
+
+    <!-- Grilla de Productos con Tarjetas en HTML -->
+    <section class="products-grid">
+
+      <!-- TARJETA 1: Favorito -->
+      <article class="card card--favorite">
+        <div class="card__header">
+          <span class="badge badge--favorite">♥ FAVORITO</span>
+          <img src="img/selva-negra.jpg" alt="Torta Fina Selva Negra" class="card__image">
         </div>
-        <div class="tarjeta_cuerpo">
-          <div class="tarjeta_meta">
-            <span class="tarjeta_categoria">TORTAS</span>
+        <div class="card__body">
+          <div class="card__meta">
+            <span class="card__rating">★ 5.0 (48)</span>
+            <span class="card__category">TORTAS</span>
           </div>
-          <h3 class="tarjeta_titulo">Torta de Fresas</h3>
-          <p class="tarjeta_descripcion">Suave bizcochuelo de vainilla bañado en almíbar, relleno con abundante crema chantilly y fresas frescas.</p>
+          <h3 class="card__title">Torta Fina Selva Negra Especial</h3>
+          <p class="card__description">Bizcocho húmedo de cacao con relleno de mermelada de frambuesas silvestres y cerezas.</p>
         </div>
-        <div class="tarjeta_pie">
-          <div class="caja_precio">
-            <span class="etiqueta_precio">PRECIO</span>
-            <span class="monto_precio">S/ 72.00</span>
-          </div>
-          <button class="boton boton_agregar"> Añadir</button>
-        </div>
-      </article>
-      <!-- TARJETA 2 -->
-      <article class="tarjeta tarjeta_favorito">
-        <div class="tarjeta_encabezado">
-          <img src="https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?w=500" alt="Torta Red Velvet" class="tarjeta_imagen">
-        </div>
-        <div class="tarjeta_cuerpo">
-          <div class="tarjeta_meta">
-            <span class="tarjeta_categoria">TORTAS</span>
-          </div>
-          <h3 class="tarjeta_titulo">Torta Velvet Imperial</h3>
-          <p class="tarjeta_descripcion">Bizcocho aterciopelado de cacao suave con capas de frosting de queso crema Philadelphia y toque de vainilla.</p>
-        </div>
-        <div class="tarjeta_pie">
-          <div class="caja_precio">
-            <span class="etiqueta_precio">PRECIO</span>
-            <span class="monto_precio">S/ 85.00</span>
+        <div class="card__footer">
+          <div class="card__price-box">
+            <span class="card__price-label">PRECIO</span>
+            <span class="card__price-amount">S/ 85.00</span>
           </div>
           <button class="boton boton_agregar"> Añadir</button>
         </div>
       </article>
-      <!-- TARJETA 3 -->
-      <article class="tarjeta">
-        <div class="tarjeta_encabezado">
-          <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=500" alt="Torta Moka y Caramelo" class="tarjeta_imagen">
+
+      <!-- TARJETA 2: Oferta -->
+      <article class="card card--sale">
+        <div class="card__header">
+          <span class="badge badge--sale">OFERTA -15%</span>
+          <img src="img/lemon-pie.jpg" alt="Pie de Limón" class="card__image">
         </div>
-        <div class="tarjeta_cuerpo">
-          <div class="tarjeta_meta">
-            <span class="tarjeta_categoria">TORTAS</span>
+        <div class="card__body">
+          <div class="card__meta">
+            <span class="card__rating">★ 4.8 (29)</span>
+            <span class="card__category">PIES</span>
           </div>
-          <h3 class="tarjeta_titulo">Torta de Chocolate</h3>
-          <p class="tarjeta_descripcion">Combinación de café gourmet, crema moka artesanal y un goteo irresistible de caramelo toffee salado.</p>
+          <h3 class="card__title">Pie de Limón Real Gourmet</h3>
+          <p class="card__description">Crocante base de galleta con crema suave de limón criollo y copioso merengue.</p>
         </div>
-        <div class="tarjeta_pie">
-          <div class="caja_precio">
-            <span class="etiqueta_precio">PRECIO</span>
-            <span class="monto_precio">S/ 78.00</span>
-          </div>
-          <button class="boton boton_agregar"> Añadir</button>
-        </div>
-      </article>
-    
-      <!-- TARJETA 4 -->
-      <article class="tarjeta tarjeta_favorito">
-        <div class="tarjeta_encabezado">
-          <img src="https://capriccioperu.com/wp-content/uploads/2020/04/Delicia_Lucuma_1.jpg" alt="Torta de Lúcuma con Manjar" class="tarjeta_imagen">
-        </div>
-        <div class="tarjeta_cuerpo">
-          <div class="tarjeta_meta">
-            <span class="tarjeta_categoria">TORTAS</span>
-          </div>
-          <h3 class="tarjeta_titulo">Torta de Lucuma</h3>
-          <p class="tarjeta_descripcion">Suave bizcochuelo relleno con mousse de pura pulpa de lúcuma y capas de dulce de leche artesanal.</p>
-        </div>
-        <div class="tarjeta_pie">
-          <div class="caja_precio">
-            <span class="etiqueta_precio">PRECIO</span>
-            <span class="monto_precio">S/ 80.00</span>
+        <div class="card__footer">
+          <div class="card__price-box">
+            <span class="card__price-old">S/ 65.00</span>
+            <span class="card__price-amount">S/ 55.00</span>
           </div>
           <button class="boton boton_agregar"> Añadir</button>
         </div>
       </article>
-      <!-- TARJETA 5 -->
-      <article class="tarjeta">
-        <div class="tarjeta_encabezado">
-          <img src="https://images.unsplash.com/photo-1542826438-bd32f43d626f?w=500" alt="Torta Óreo Cookies and Cream" class="tarjeta_imagen">
+
+      <!-- TARJETA 3: Estándar -->
+      <article class="card">
+        <div class="card__header">
+          <img src="img/tres-leches.jpg" alt="Torta Tres Leches" class="card__image">
         </div>
-        <div class="tarjeta_cuerpo">
-          <div class="tarjeta_meta">
-            <span class="tarjeta_categoria">TORTAS</span>
+        <div class="card__body">
+          <div class="card__meta">
+            <span class="card__rating">★ 4.9 (35)</span>
+            <span class="card__category">POSTRES</span>
           </div>
-          <h3 class="tarjeta_titulo">Torta Oreo</h3>
-          <p class="tarjeta_descripcion">Capas de bizcocho húmedo de chocolate con crema especial de galletas Óreo trituradas y ganache.</p>
+          <h3 class="card__title">Torta Tres Leches Tradicional</h3>
+          <p class="card__description">Bizcochuelo bañado en mezcla cremosa de tres leches con canela y crema chantilly.</p>
         </div>
-        <div class="tarjeta_pie">
-          <div class="caja_precio">
-            <span class="etiqueta_precio">PRECIO</span>
-            <span class="monto_precio">S/ 72.00</span>
-          </div>
-          <button class="boton boton_agregar"> Añadir</button>
-        </div>
-      </article>
-      <!-- TARJETA 6 -->
-      <article class="tarjeta">
-        <div class="tarjeta_encabezado">
-          <img src="https://jameaperu.com/assets/images/torta-de-maracuya_800x534.webp" alt="Torta de Maracuyá" class="tarjeta_imagen">
-        </div>
-        <div class="tarjeta_cuerpo">
-          <div class="tarjeta_meta">
-            <span class="tarjeta_categoria">TORTAS</span>
-          </div>
-          <h3 class="tarjeta_titulo">Torta de Maracuya</h3>
-          <p class="tarjeta_descripcion">Bizcocho liviano con mousse aireado de maracuyá amazónico y espejo brillante de reducción agridulce.</p>
-        </div>
-        <div class="tarjeta_pie">
-          <div class="caja_precio">
-            <span class="etiqueta_precio">PRECIO</span>
-            <span class="monto_precio">S/ 75.00</span>
+        <div class="card__footer">
+          <div class="card__price-box">
+            <span class="card__price-label">PRECIO</span>
+            <span class="card__price-amount">S/ 60.00</span>
           </div>
           <button class="boton boton_agregar"> Añadir</button>
         </div>
       </article>
-      <!-- TARJETA 7 -->
-      <article class="tarjeta">
-        <div class="tarjeta_encabezado">
-          <img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=500" alt="Cheesecake de Frutos Rojos" class="tarjeta_imagen">
+
+      <!-- TARJETA 4: Agotado -->
+      <article class="card card--out-of-stock">
+        <div class="card__header">
+          <span class="badge badge--stock">AGOTADO</span>
+          <img src="./imagenes de pasteleria/chocolate.jpg" alt="Torta de Chocolate" class="card__image">
         </div>
         <div class="tarjeta_cuerpo">
           <div class="tarjeta_meta">
             <span class="tarjeta_categoria">POSTRES</span>
           </div>
-          <h3 class="tarjeta_titulo">Pai de Frutos Rojos</h3>
-          <p class="tarjeta_descripcion">Suave base de galleta con crema de queso horneada y coulis artesanal de frambuesas.</p>
+          <h3 class="card__title">Torta Sublime de Chocolate</h3>
+          <p class="card__description">Triple capa de bizcocho de chocolate relleno de fudge artesanal de la casa.</p>
         </div>
-        <div class="tarjeta_pie">
-          <div class="caja_precio">
-            <span class="etiqueta_precio">PRECIO</span>
-            <span class="monto_precio">S/ 70.00</span>
+        <div class="card__footer">
+          <div class="card__price-box">
+            <span class="card__price-label">PRECIO</span>
+            <span class="card__price-amount">S/ 75.00</span>
           </div>
           <button class="boton boton_agregar"> Añadir</button>
         </div>
       </article>
-      <!-- TARJETA 8 -->
+      
       <article class="tarjeta">
         <div class="tarjeta_encabezado">
           <img src="https://images.unsplash.com/photo-1587668178277-295251f900ce?w=500" alt="Cupcakes Red Velvet" class="tarjeta_imagen">
@@ -222,7 +184,7 @@
           <button class="boton boton_agregar"> Añadir</button>
         </div>
       </article> 
-      <!-- TARJETA 9 -->
+      
       <article class="tarjeta">
         <div class="tarjeta_encabezado">
           <img src="https://images.unsplash.com/photo-1568571780765-9276ac8b75a2?w=500" alt="Pie de Manzana" class="tarjeta_imagen">
@@ -304,21 +266,25 @@
       </article>
 
 
+
     </section>
   </main>
-  <!-- Módulo de Pedidos Personalizados -->
-  <section class="pedido_personalizado">
-    <div class="pedido_contenedor">
-      <div class="pedido_encabezado">
-        <h2 class="pedido_titulo">Haz tu Pedido Personalizado o Reserva</h2>
-        <p class="pedido_subtitulo">Cotiza en tiempo real la torta de tus sueños para cumpleaños o eventos.</p>
+
+  <!-- 6. Módulo de Pedidos Personalizados & Reservas -->
+  <section class="custom-order">
+    <div class="custom-order__container">
+      <div class="custom-order__header">
+        <span class="badge badge--hero">EXCLUSIVO</span>
+        <h2 class="custom-order__title">Haz tu Pedido Personalizado o Reserva</h2>
+        <p class="custom-order__subtitle">Cotiza en tiempo real la torta de tus sueños para cumpleaños o eventos.</p>
       </div>
-      <div class="pedido_contenido">
+
+      <div class="custom-order__content">
         <!-- Formulario -->
-        <form class="formulario formulario_grid">
-          <div class="campo_grupo">
-            <label for="cNombre" class="campo_etiqueta">Nombre Completo:</label>
-            <input type="text" id="cNombre" class="campo_input" placeholder="Ej. Ana Belén" required>
+        <form class="form form--grid">
+          <div class="form__group">
+            <label for="cName" class="form__label">Nombre Completo:</label>
+            <input type="text" id="cName" class="form__input" placeholder="Ej. Ana Belén" required>
           </div>
           <div class="campo_grupo">
             <label for="cTelefono" class="campo_etiqueta">Teléfono / WhatsApp:</label>
@@ -339,12 +305,22 @@
       </div>
     </div>
   </section>
-  <!-- Pie de Página -->
-  <footer class="pie_pagina">
-    <div class="pie_contenedor">
-      <div class="pie_columna">
-        <h4 class="pie_titulo">DULCE SELVA</h4>
-        <p class="pie_texto">La mejor repostería artesanal de Puerto Maldonado. Calidad y sabor en cada porción.</p>
+
+  <!-- 7. Módulo de Reseñas de Clientes -->
+  <section class="reviews">
+    <div class="main-container">
+      <h2 class="catalog-header__title" style="text-align: center; margin-bottom: 20px;">Lo que Dicen Nuestros Clientes</h2>
+      <div class="reviews__grid">
+        <div class="reviews__card">
+          <div style="color: #F5A623; font-size: 1.2rem;">★★★★★</div>
+          <p style="font-size: 0.85rem; margin: 8px 0;">"¡La Selva Negra estuvo espectacular! Llegó súper fresca a mi casa."</p>
+          <strong>- Lucía Fernández</strong>
+        </div>
+        <div class="reviews__card">
+          <div style="color: #F5A623; font-size: 1.2rem;">★★★★★</div>
+          <p style="font-size: 0.85rem; margin: 8px 0;">"Excelente atención por WhatsApp y el pago con Yape fue rapidísimo."</p>
+          <strong>- Carlos Mendoza</strong>
+        </div>
       </div>
       <div class="pie_columna">
         <h4 class="pie_titulo">Atención & Envíos</h4>

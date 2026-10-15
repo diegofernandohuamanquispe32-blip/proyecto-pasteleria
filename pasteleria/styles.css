@@ -9,11 +9,12 @@ body {
   color: #2B2B2B;
   line-height: 1.5;
 }
+
 /* ==========================================================================
-   ENCABEZADO Y BARRA DE PROMOCIÓN
+   2. RECUADRO 1: BARRA SUPERIOR DE PROMOCIÓN (.promo-bar)
    ========================================================================== */
-.barra_promo {
-  background-color: #4A2E2B;
+.promo-bar {
+  background-color: #4A2E2B; /* Fondo marrón oscuro */
   color: #FFFFFF;
   text-align: center;
   padding: 6px 12px;
@@ -78,10 +79,11 @@ body {
   flex-wrap: wrap;
   justify-content: center;
 }
+
 /* ==========================================================================
-   NAVEGACIÓN Y BANNER PORTADA
+   4. RECUADRO 3: BARRA DE NAVEGACIÓN (.nav)
    ========================================================================== */
-.navegacion {
+.nav {
   background-color: #FFFFFF;
   border-bottom: 1px solid #E8DFD8;
   padding: 0 20px;
@@ -111,21 +113,16 @@ body {
   color: #FFFFFF;
   padding: 40px 20px;
   text-align: center;
+  border-bottom: 3px solid #E04D53;
 }
-.portada_titulo { 
-  font-size: 1.8rem; 
-  margin: 10px 0; 
-}
-.portada_descripcion { 
-  font-size: 0.95rem; 
-  opacity: 0.9; 
-  max-width: 600px; 
-  margin: 0 auto; 
-}
+
+.hero__title { font-size: 1.8rem; margin: 10px 0; }
+.hero__description { font-size: 0.95rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+
 /* ==========================================================================
-   BOTONES E INSIGNIAS
+   6. RECUADROS 5: CAJAS Y BOTONES REUTILIZABLES (OOCSS/BEM)
    ========================================================================== */
-.boton {
+.btn {
   padding: 8px 16px;
   border-radius: 20px;
   border: none;
@@ -164,32 +161,31 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
 }
 
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.badge--cart { background-color: #FFFFFF; color: #E04D53; margin-left: 6px; }
+.badge--favorite { position: absolute; top: 12px; left: 12px; background-color: #E04D53; color: #FFFFFF; z-index: 2; }
+.badge--sale { position: absolute; top: 12px; left: 12px; background-color: #27AE60; color: #FFFFFF; z-index: 2; }
+.badge--stock { position: absolute; top: 12px; left: 12px; background-color: #7f8c8d; color: #FFFFFF; z-index: 2; }
+.badge--hero { background-color: rgba(255, 255, 255, 0.2); color: #FFFFFF; }
+
 /* ==========================================================================
-   GRILLA DE PRODUCTOS Y TARJETAS
+   7. RECUADRO 6: GRILLA DE PRODUCTOS Y TARJETAS (.card)
    ========================================================================== */
-.contenedor_principal { 
-  max-width: 1280px; 
-  margin: 0 auto; 
-  padding: 30px 20px; 
-}
-.encabezado_catalogo { 
-  display: flex; 
-  flex-direction: column; 
-  gap: 15px; 
-  margin-bottom: 25px; 
-}
-.catalogo_titulo { 
-  color: #4A2E2B; 
-  font-size: 1.4rem; 
-}
-.catalogo_select { 
-  padding: 8px 12px; 
-  border-radius: 8px; 
-  border: 1px solid #E8DFD8; 
-  background-color: #FFFFFF; 
-}
-/* Mobile First: 1 columna por defecto en celulares */
-.cuadricula_productos {
+.main-container { max-width: 1280px; margin: 0 auto; padding: 30px 20px; }
+
+.catalog-header { display: flex; flex-direction: column; gap: 15px; margin-bottom: 25px; }
+.catalog-header__title { color: #4A2E2B; font-size: 1.4rem; }
+.catalog-header__select { padding: 8px 12px; border-radius: 8px; border: 1px solid #E8DFD8; background-color: #FFFFFF; }
+
+/* Grilla Responsiva: 1 recuadro en móviles */
+.products-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 25px;
@@ -256,60 +252,35 @@ body {
   align-items: center;
   background-color: #FAFAFA;
 }
-.caja_precio {
-  display: flex;
-  flex-direction: column;
-}
-.etiqueta_precio { 
-  display: block; 
-  font-size: 0.65rem; 
-  color: #777777; 
-  font-weight: bold; 
-}
-.precio_anterior { 
-  display: block; 
-  font-size: 0.8rem; 
-  color: #999999; 
-  text-decoration: line-through; 
-}
-.monto_precio { 
-  font-size: 1.15rem; 
-  font-weight: 800; 
-  color: #2B2B2B;
-}
+
+.card__price-label { display: block; font-size: 0.65rem; color: #777777; font-weight: bold; }
+.card__price-old { display: block; font-size: 0.8rem; color: #999999; text-decoration: line-through; }
+.card__price-amount { font-size: 1.15rem; font-weight: 800; color: #2B2B2B; }
+
 /* ==========================================================================
-   PEDIDO PERSONALIZADO Y FORMULARIO
+   8. RECUADRO 7: MÓDULO DE RESERVAS Y RESEÑAS (.custom-order / .reviews)
    ========================================================================== */
-.pedido_personalizado { 
-  background-color: #E8DFD8; 
-  padding: 40px 20px; 
-  margin-top: 40px; 
+.custom-order {
+  background-color: #E8DFD8;      /* Recuadro de fondo tostado */
+  padding: 40px 20px;
+  margin-top: 40px;
+  border-radius: 20px;              /* Borde redondeado del bloque */
+  border: 1px solid #D8C3B0;
 }
-.pedido_contenedor { 
-  max-width: 1100px; 
-  margin: 0 auto; 
-}
-.pedido_titulo { 
-  color: #4A2E2B; 
-  font-size: 1.6rem; 
-  margin-top: 8px; 
-}
-.pedido_subtitulo { 
-  color: #666666; 
-  font-size: 0.9rem; 
-  margin-bottom: 20px; 
-}
-.pedido_contenido { 
-  display: grid; 
-  grid-template-columns: 1fr; 
-  gap: 30px; 
-}
-.pedido_resumen { 
-  background-color: #FFFFFF; 
-  padding: 25px; 
-  border-radius: 16px; 
-  border: 1px solid #D8C3B0; 
-  height: fit-content;
+
+.custom-order__container { max-width: 1100px; margin: 0 auto; }
+.custom-order__title { color: #4A2E2B; font-size: 1.6rem; margin-top: 8px; }
+.custom-order__subtitle { color: #666666; font-size: 0.9rem; margin-bottom: 20px; }
+
+.custom-order__content { display: grid; grid-template-columns: 1fr; gap: 30px; }
+
+/* Recuadro del Resumen de Reserva */
+.custom-order__summary {
+  background-color: #FFFFFF;
+  padding: 25px;
+  border-radius: 16px;              /* Caja del resumen */
+  border: 1px solid #D8C3B0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.04);
 }
 
 .formulario { 
@@ -339,41 +310,35 @@ body {
   background-color: #FAF6F0; 
   outline: none; 
 }
+
+.reviews { padding: 40px 20px; background-color: #FFFFFF; border-radius: 20px; margin-top: 30px; }
+.reviews__grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+
+/* Recuadro de Opinión Individual */
+.reviews__card {
+  background-color: #FAF6F0;
+  padding: 20px;
+  border-radius: 12px;              /* Caja redondeada de la reseña */
+  border: 1px solid #E8DFD8;
+}
+
 /* ==========================================================================
-   PIE DE PÁGINA Y MEDIA QUERIES (RESPONSIVE)
+   9. RECUADRO 8: PIE DE PÁGINA / FOOTER (.footer) Y MEDIA QUERIES
    ========================================================================== */
-.pie_pagina { 
-  background-color: #4A2E2B; 
-  color: #FFFFFF; 
-  margin-top: 50px; 
-  padding-top: 40px; 
+.footer {
+  background-color: #4A2E2B;
+  color: #FFFFFF;
+  margin-top: 50px;
+  padding-top: 40px;
+  border-top: 4px solid #E04D53;
 }
-.pie_contenedor { 
-  max-width: 1280px; 
-  margin: 0 auto; 
-  padding: 0 20px 30px; 
-  display: grid; 
-  grid-template-columns: 1fr; 
-  gap: 30px; 
-}
-.pie_titulo { 
-  font-size: 1.1rem; 
-  margin-bottom: 15px; 
-  color: #F4A460; 
-}
-.pie_texto { 
-  font-size: 0.85rem; 
-  opacity: 0.85; 
-  margin-bottom: 8px;
-}
-.pie_inferior { 
-  border-top: 1px solid rgba(255,255,255,0.1);
-  text-align: center; 
-  padding: 15px 20px; 
-  font-size: 0.8rem; 
-  opacity: 0.7; 
-}
-/* Media Queries */
+
+.footer__container { max-width: 1280px; margin: 0 auto; padding: 0 20px 30px; display: grid; grid-template-columns: 1fr; gap: 30px; }
+.footer__title { font-size: 1.1rem; margin-bottom: 15px; color: #F4A460; }
+.footer__text { font-size: 0.85rem; opacity: 0.85; margin-bottom: 8px; }
+.footer__bottom { border-top: 1px solid rgba(255,255,255,0.1); text-align: center; padding: 15px 20px; font-size: 0.8rem; opacity: 0.7; }
+
+/* Escalado Progresivo Responsivo (Mobile First) */
 @media (min-width: 600px) {
   .encabezado { 
     flex-direction: row; 
