@@ -1,74 +1,69 @@
-/* ==========================================================================
-   1. RESET Y FONDO GENERAL DE LA PÁGINA
-   ========================================================================== */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
 }
-
 body {
-  background-color: #FAF6F0; /* Fondo crema global */
+  background-color: #FAF6F0;
   color: #2B2B2B;
   line-height: 1.5;
 }
-
 /* ==========================================================================
-   2. RECUADRO 1: BARRA SUPERIOR DE PROMOCIÓN (.promo-bar)
+   ENCABEZADO Y BARRA DE PROMOCIÓN
    ========================================================================== */
-.promo-bar {
-  background-color: #4A2E2B; /* Fondo marrón oscuro */
+.barra_promo {
+  background-color: #4A2E2B;
   color: #FFFFFF;
   text-align: center;
-  padding: 8px 12px;
-  font-size: 0.85rem;
+  padding: 6px 12px;
+  font-size: 0.8rem;
   font-weight: 600;
-  border-bottom: 2px solid #36211F; /* Borde inferior */
 }
-
-/* ==========================================================================
-   3. RECUADRO 2: ENCABEZADO / HEADER (.header)
-   ========================================================================== */
-.header {
+.encabezado {
   background-color: #FFFFFF;
   padding: 15px 25px;
   display: flex;
   flex-direction: column;
   gap: 15px;
   align-items: center;
-  border-bottom: 1px solid #E8DFD8; /* Borde del marco */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Sombra CSS3 */
+  border-bottom: 1px solid #E8DFD8;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
 }
-
-.header__brand {
+.encabezado_marca {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
-
-.header__logo { font-size: 2.2rem; }
-.header__name { font-size: 1.5rem; color: #4A2E2B; font-weight: 800; }
-.header__subtitle { font-size: 0.7rem; color: #777777; font-weight: 700; }
-
-/* Recuadro del Buscador */
-.search-bar {
+.encabezado_logo { 
+  font-size: 2.2rem; 
+}
+.encabezado_nombre { 
+  font-size: 1.5rem; 
+  color: #4A2E2B; 
+  font-weight: 800; 
+  letter-spacing: 1px; 
+}
+.encabezado_subtitulo { 
+  font-size: 0.7rem; 
+  color: #777777; 
+  font-weight: 700; 
+}
+.barra_busqueda {
   display: flex;
   width: 100%;
   max-width: 480px;
   position: relative;
 }
-
-.search-bar__input {
+.busqueda_input {
   width: 100%;
   padding: 10px 40px 10px 16px;
-  border: 1px solid #E8DFD8;       /* Borde del campo */
-  border-radius: 20px;              /* Bordes redondeados CSS3 */
+  border: 1px solid #E8DFD8;
+  border-radius: 20px;
   background-color: #FAF6F0;
   outline: none;
 }
-
-.search-bar__button {
+.boton_busqueda {
   position: absolute;
   right: 12px;
   top: 50%;
@@ -77,66 +72,62 @@ body {
   border: none;
   cursor: pointer;
 }
-
-.header__actions {
+.encabezado_acciones {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
   justify-content: center;
 }
-
 /* ==========================================================================
-   4. RECUADRO 3: BARRA DE NAVEGACIÓN (.nav)
+   NAVEGACIÓN Y BANNER PORTADA
    ========================================================================== */
-.nav {
+.navegacion {
   background-color: #FFFFFF;
   border-bottom: 1px solid #E8DFD8;
   padding: 0 20px;
 }
-
-.nav__list {
+.navegacion_lista {
   display: flex;
   list-style: none;
   gap: 20px;
   overflow-x: auto;
   padding: 12px 0;
 }
-
-.nav__link {
+.navegacion_enlace {
   text-decoration: none;
   color: #555555;
   font-weight: 600;
   font-size: 0.9rem;
   white-space: nowrap;
 }
-
-.nav__link:hover, 
-.nav__link--active {
+.navegacion_enlace:hover, 
+.enlace_activo {
   color: #E04D53;
   border-bottom: 2px solid #E04D53;
   padding-bottom: 4px;
 }
-
-/* ==========================================================================
-   5. RECUADRO 4: BANNER HERO (.hero)
-   ========================================================================== */
-.hero {
-  background: linear-gradient(135deg, #4A2E2B 0%, #6B423D 100%); /* Degradado CSS3 */
+.portada {
+  background: linear-gradient(135deg, #4A2E2B 0%, #6B423D 100%);
   color: #FFFFFF;
-  padding: 45px 20px;
+  padding: 40px 20px;
   text-align: center;
-  border-bottom: 3px solid #E04D53;
 }
-
-.hero__title { font-size: 1.8rem; margin: 10px 0; }
-.hero__description { font-size: 0.95rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
-
+.portada_titulo { 
+  font-size: 1.8rem; 
+  margin: 10px 0; 
+}
+.portada_descripcion { 
+  font-size: 0.95rem; 
+  opacity: 0.9; 
+  max-width: 600px; 
+  margin: 0 auto; 
+}
 /* ==========================================================================
-   6. RECUADROS 5: CAJAS Y BOTONES REUTILIZABLES (OOCSS/BEM)
+   BOTONES E INSIGNIAS
    ========================================================================== */
-.btn {
+.boton {
   padding: 8px 16px;
-  border-radius: 20px;             /* Bordes redondeados */
+  border-radius: 20px;
   border: none;
   font-size: 0.85rem;
   font-weight: 700;
@@ -145,199 +136,277 @@ body {
   text-decoration: none;
   display: inline-block;
 }
-
-.btn--outline { background-color: transparent; border: 1px solid #E8DFD8; color: #4A2E2B; }
-.btn--cart { background-color: #E04D53; color: #FFFFFF; }
-.btn--primary, .btn--add { background-color: #4A2E2B; color: #FFFFFF; }
-.btn--disabled { background-color: #CCCCCC; color: #666666; cursor: not-allowed; }
-.btn--full { width: 100%; text-align: center; }
-
-.btn:not(.btn--disabled):hover {
+.boton_contorno { 
+  background-color: transparent;
+  border: 1px solid #E8DFD8; 
+  color: #4A2E2B; 
+}
+.boton_carrito { 
+  background-color: #E04D53;
+  color: #FFFFFF; 
+}
+.boton_primario, 
+.boton_agregar { 
+  background-color: #4A2E2B; 
+  color: #FFFFFF; 
+}
+.boton_deshabilitado { 
+  background-color: #CCCCCC; 
+  color: #666666; 
+  cursor: not-allowed; 
+}
+.boton_completo { 
+  width: 100%; 
+  text-align: center; 
+}
+.boton:not(.boton_deshabilitado):hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.12); /* Sombra al pasar el mouse */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
 }
-
-.badge {
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: bold;
-}
-
-.badge--cart { background-color: #FFFFFF; color: #E04D53; margin-left: 6px; }
-.badge--favorite { position: absolute; top: 12px; left: 12px; background-color: #E04D53; color: #FFFFFF; z-index: 2; }
-.badge--sale { position: absolute; top: 12px; left: 12px; background-color: #27AE60; color: #FFFFFF; z-index: 2; }
-.badge--stock { position: absolute; top: 12px; left: 12px; background-color: #7f8c8d; color: #FFFFFF; z-index: 2; }
-.badge--hero { background-color: rgba(255, 255, 255, 0.2); color: #FFFFFF; }
 
 /* ==========================================================================
-   7. RECUADRO 6: GRILLA DE PRODUCTOS Y TARJETAS (.card)
+   GRILLA DE PRODUCTOS Y TARJETAS
    ========================================================================== */
-.main-container { max-width: 1280px; margin: 0 auto; padding: 30px 20px; }
-
-.catalog-header { display: flex; flex-direction: column; gap: 15px; margin-bottom: 25px; }
-.catalog-header__title { color: #4A2E2B; font-size: 1.4rem; }
-.catalog-header__select { padding: 8px 12px; border-radius: 8px; border: 1px solid #E8DFD8; background-color: #FFFFFF; }
-
-/* Grilla Responsiva: 1 recuadro en móviles */
-.products-grid {
+.contenedor_principal { 
+  max-width: 1280px; 
+  margin: 0 auto; 
+  padding: 30px 20px; 
+}
+.encabezado_catalogo { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 15px; 
+  margin-bottom: 25px; 
+}
+.catalogo_titulo { 
+  color: #4A2E2B; 
+  font-size: 1.4rem; 
+}
+.catalogo_select { 
+  padding: 8px 12px; 
+  border-radius: 8px; 
+  border: 1px solid #E8DFD8; 
+  background-color: #FFFFFF; 
+}
+/* Mobile First: 1 columna por defecto en celulares */
+.cuadricula_productos {
   display: grid;
   grid-template-columns: 1fr;
   gap: 25px;
 }
-
-/* Recuadro de Tarjeta Individual (BEM) */
-.card {
-  background-color: #FFFFFF;      /* Fondo blanco de la tarjeta */
-  border: 1px solid #E8DFD8;        /* Borde del marco */
-  border-radius: 16px;              /* Bordes redondeados CSS3 */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06); /* Sombra flotante */
+.tarjeta {
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid #E8DFD8;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+.tarjeta:hover { 
+  transform: translateY(-6px); 
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12); 
 }
-
-.card__header { position: relative; }
-
-.card__image {
+.tarjeta_encabezado { 
+  position: relative; 
+}
+.tarjeta_imagen {
   width: 100%;
   height: 200px;
   object-fit: cover;
   display: block;
 }
-
-.card--out-of-stock .card__image { filter: grayscale(80%); opacity: 0.7; }
-.card__body { padding: 16px; }
-.card__meta { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 8px; }
-.card__rating { color: #F5A623; font-weight: bold; }
-.card__category { color: #777777; font-weight: 700; }
-.card__title { font-size: 1.1rem; color: #4A2E2B; margin-bottom: 8px; }
-.card__description { font-size: 0.85rem; color: #666666; }
-
-.card__footer {
+.tarjeta_agotado .tarjeta_imagen { 
+  filter: grayscale(80%); 
+  opacity: 0.7; 
+}
+.tarjeta_cuerpo { 
+  padding: 16px; 
+}
+.tarjeta_meta { 
+  display: flex; 
+  justify-content: space-between;
+  font-size: 0.8rem; 
+  margin-bottom: 8px;
+}
+.tarjeta_calificacion { 
+  color: #F5A623;
+  font-weight: bold; 
+}
+.tarjeta_categoria { 
+  color: #777777; 
+  font-weight: 700; 
+}
+.tarjeta_titulo { 
+  font-size: 1.1rem; 
+  color: #4A2E2B; 
+  margin-bottom: 8px; 
+}
+.tarjeta_descripcion { 
+  font-size: 0.85rem; 
+  color: #666666; 
+}
+.tarjeta_pie {
   padding: 12px 16px;
-  border-top: 1px solid #E8DFD8;    /* Borde que separa el pie de la tarjeta */
+  border-top: 1px solid #E8DFD8;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #FAFAFA;
 }
-
-.card__price-label { display: block; font-size: 0.65rem; color: #777777; font-weight: bold; }
-.card__price-old { display: block; font-size: 0.8rem; color: #999999; text-decoration: line-through; }
-.card__price-amount { font-size: 1.15rem; font-weight: 800; color: #2B2B2B; }
-
-/* ==========================================================================
-   8. RECUADRO 7: MÓDULO DE RESERVAS Y RESEÑAS (.custom-order / .reviews)
-   ========================================================================== */
-.custom-order {
-  background-color: #E8DFD8;      /* Recuadro de fondo tostado */
-  padding: 40px 20px;
-  margin-top: 40px;
-  border-radius: 20px;              /* Borde redondeado del bloque */
-  border: 1px solid #D8C3B0;
-}
-
-.custom-order__container { max-width: 1100px; margin: 0 auto; }
-.custom-order__title { color: #4A2E2B; font-size: 1.6rem; margin-top: 8px; }
-.custom-order__subtitle { color: #666666; font-size: 0.9rem; margin-bottom: 20px; }
-
-.custom-order__content { display: grid; grid-template-columns: 1fr; gap: 30px; }
-
-/* Recuadro del Resumen de Reserva */
-.custom-order__summary {
-  background-color: #FFFFFF;
-  padding: 25px;
-  border-radius: 16px;              /* Caja del resumen */
-  border: 1px solid #D8C3B0;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.04);
-}
-
-.custom-order__summary-title { color: #4A2E2B; font-size: 1.2rem; margin-bottom: 12px; }
-.custom-order__summary-list { list-style: none; margin: 15px 0; font-size: 0.9rem; }
-.custom-order__summary-list li {
+.caja_precio {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  border-bottom: 1px dashed #E8DFD8;
-  padding-bottom: 6px;
+  flex-direction: column;
 }
-
-.custom-order__price-box {
-  margin-top: 15px;
-  text-align: center;
-  background-color: #FAF6F0;
-  padding: 12px;
-  border-radius: 12px;
-  border: 1px solid #E8DFD8;
+.etiqueta_precio { 
+  display: block; 
+  font-size: 0.65rem; 
+  color: #777777; 
+  font-weight: bold; 
 }
-
-.custom-order__price-label { font-size: 0.7rem; font-weight: bold; color: #777777; }
-.custom-order__price-amount { font-size: 1.8rem; font-weight: 800; color: #E04D53; display: block; }
-
-.form { display: flex; flex-direction: column; gap: 15px; }
-.form--grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
-.form__group { display: flex; flex-direction: column; gap: 6px; }
-.form__label { font-size: 0.85rem; font-weight: 700; color: #4A2E2B; }
-.form__input {
-  padding: 10px 14px;
-  border-radius: 8px;
-  border: 1px solid #E8DFD8;        /* Recuadro de cada input */
-  background-color: #FAF6F0;
-  outline: none;
+.precio_anterior { 
+  display: block; 
+  font-size: 0.8rem; 
+  color: #999999; 
+  text-decoration: line-through; 
 }
-
-.reviews { padding: 40px 20px; background-color: #FFFFFF; border-radius: 20px; margin-top: 30px; }
-.reviews__grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
-
-/* Recuadro de Opinión Individual */
-.reviews__card {
-  background-color: #FAF6F0;
-  padding: 20px;
-  border-radius: 12px;              /* Caja redondeada de la reseña */
-  border: 1px solid #E8DFD8;
+.monto_precio { 
+  font-size: 1.15rem; 
+  font-weight: 800; 
+  color: #2B2B2B;
 }
-
 /* ==========================================================================
-   9. RECUADRO 8: PIE DE PÁGINA / FOOTER (.footer) Y MEDIA QUERIES
+   PEDIDO PERSONALIZADO Y FORMULARIO
    ========================================================================== */
-.footer {
-  background-color: #4A2E2B;
-  color: #FFFFFF;
-  margin-top: 50px;
-  padding-top: 40px;
-  border-top: 4px solid #E04D53;
+.pedido_personalizado { 
+  background-color: #E8DFD8; 
+  padding: 40px 20px; 
+  margin-top: 40px; 
+}
+.pedido_contenedor { 
+  max-width: 1100px; 
+  margin: 0 auto; 
+}
+.pedido_titulo { 
+  color: #4A2E2B; 
+  font-size: 1.6rem; 
+  margin-top: 8px; 
+}
+.pedido_subtitulo { 
+  color: #666666; 
+  font-size: 0.9rem; 
+  margin-bottom: 20px; 
+}
+.pedido_contenido { 
+  display: grid; 
+  grid-template-columns: 1fr; 
+  gap: 30px; 
+}
+.pedido_resumen { 
+  background-color: #FFFFFF; 
+  padding: 25px; 
+  border-radius: 16px; 
+  border: 1px solid #D8C3B0; 
+  height: fit-content;
 }
 
-.footer__container { max-width: 1280px; margin: 0 auto; padding: 0 20px 30px; display: grid; grid-template-columns: 1fr; gap: 30px; }
-.footer__title { font-size: 1.1rem; margin-bottom: 15px; color: #F4A460; }
-.footer__text { font-size: 0.85rem; opacity: 0.85; margin-bottom: 8px; }
-.footer__bottom { border-top: 1px solid rgba(255,255,255,0.1); text-align: center; padding: 15px 20px; font-size: 0.8rem; opacity: 0.7; }
-
-/* Escalado Progresivo Responsivo (Mobile First) */
+.formulario { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 15px; 
+}
+.formulario_grid { 
+  display: grid; 
+  grid-template-columns: 1fr; 
+  gap: 15px; 
+}
+.campo_grupo { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 6px; 
+}
+.campo_etiqueta { 
+  font-size: 0.85rem; 
+  font-weight: 700; 
+  color: #4A2E2B; 
+}
+.campo_input { 
+  padding: 10px 14px; 
+  border-radius: 8px; 
+  border: 1px solid #E8DFD8; 
+  background-color: #FAF6F0; 
+  outline: none; 
+}
+/* ==========================================================================
+   PIE DE PÁGINA Y MEDIA QUERIES (RESPONSIVE)
+   ========================================================================== */
+.pie_pagina { 
+  background-color: #4A2E2B; 
+  color: #FFFFFF; 
+  margin-top: 50px; 
+  padding-top: 40px; 
+}
+.pie_contenedor { 
+  max-width: 1280px; 
+  margin: 0 auto; 
+  padding: 0 20px 30px; 
+  display: grid; 
+  grid-template-columns: 1fr; 
+  gap: 30px; 
+}
+.pie_titulo { 
+  font-size: 1.1rem; 
+  margin-bottom: 15px; 
+  color: #F4A460; 
+}
+.pie_texto { 
+  font-size: 0.85rem; 
+  opacity: 0.85; 
+  margin-bottom: 8px;
+}
+.pie_inferior { 
+  border-top: 1px solid rgba(255,255,255,0.1);
+  text-align: center; 
+  padding: 15px 20px; 
+  font-size: 0.8rem; 
+  opacity: 0.7; 
+}
+/* Media Queries */
 @media (min-width: 600px) {
-  .header { flex-direction: row; justify-content: space-between; }
-  .catalog-header { flex-direction: row; justify-content: space-between; align-items: center; }
-  .products-grid { grid-template-columns: repeat(2, 1fr); } /* 2 columnas en Tablet */
-  .form--grid { grid-template-columns: repeat(2, 1fr); }
-  .form__group--full { grid-column: span 2; }
-  .custom-order__content { grid-template-columns: 2fr 1fr; }
-  .reviews__grid { grid-template-columns: repeat(2, 1fr); }
-  .footer__container { grid-template-columns: repeat(2, 1fr); }
+  .encabezado { 
+    flex-direction: row; 
+    justify-content: space-between;
+  }
+  .encabezado_catalogo { 
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center; 
+  }
+  .cuadricula_productos { 
+    grid-template-columns: repeat(2, 1fr); 
+  }
+  .formulario_grid { 
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .campo_completo { 
+    grid-column: span 2;
+  }
+  .pedido_contenido { 
+    grid-template-columns: 2fr 1fr; 
+  }
+  .pie_contenedor {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
-
 @media (min-width: 900px) {
-  .products-grid { grid-template-columns: repeat(3, 1fr); } /* 3 columnas en Laptop */
+  .cuadricula_productos { 
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
-
 @media (min-width: 1200px) {
-  .products-grid { grid-template-columns: repeat(4, 1fr); } /* 4 columnas en Pantallas Grandes */
+  .cuadricula_productos { 
+    grid-template-columns: repeat(4, 1fr); 
+  }
 }
