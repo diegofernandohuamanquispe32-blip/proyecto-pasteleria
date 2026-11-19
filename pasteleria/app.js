@@ -161,3 +161,17 @@ const cargarProductosAPI = async () => {
     renderizarproductos(products);
   }
 };
+
+const renderizarproductos = (listaproductos) => {
+  const contenedor = document.querySelector(
+    ".cuadricula_productos"
+  );
+
+  if (!contenedor) return;
+
+  if (listaproductos.length === 0) {
+    contenedor.innerHTML =
+      "No se encontraron productos";
+    return;
+  }
+};
