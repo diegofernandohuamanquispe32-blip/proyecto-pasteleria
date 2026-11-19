@@ -137,3 +137,27 @@ let carritodecompras = [];
 let categoriaseleccionada = "todos";
 let textoBusqueda = "";
 let ordenselecionado = "popular";
+
+const cargarProductosAPI = async () => {
+  const url_api = "";
+
+  if (!url_api) {
+    aplicarfiltroyrenderizar();
+    return;
+  }
+
+  try {
+    const response = await fetch(url_api);
+
+    if (!response.ok) {
+      throw new Error("Error al cargar los productos");
+    }
+
+    const datosApi = await response.json();
+    productosActuales = datosApi;
+    aplicarfiltroyrenderizar();
+
+  } catch (error) {
+    renderizarproductos(products);
+  }
+};
