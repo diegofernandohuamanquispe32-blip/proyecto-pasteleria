@@ -121,13 +121,18 @@ const products = [
     destacado: false
   }
 ];
+
 if (!localStorage.getItem("productosDulceSelva")) {
-  localStorage.setItem("productosDulceSelva", JSON.stringify(products));
+  localStorage.setItem(
+    "productosDulceSelva",
+    JSON.stringify(products)
+  );
 }
-if (!localStorage.getItem("productosDulceSelva")) {
-  localStorage.setItem("productosDulceSelva", JSON.stringify(products));
-}
-let productosActuales = JSON.parse(localStorage.getItem("productosDulceSelva")) || [...products];
+
+let productosActuales = JSON.parse(
+  localStorage.getItem("productosDulceSelva")
+) || [...products];
+
 let carritodecompras = [];
 let categoriaseleccionada = "todos";
 let textoBusqueda = "";
