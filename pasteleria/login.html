@@ -1,1 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar Sesión / Registro - DULCE SELVA</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="encabezado">
+    <div class="encabezado_marca">
+      <div class="encabezado_titulos">
+        <h1 class="encabezado_nombre">DULCE SELVA</h1>
+        <p class="encabezado_subtitulo">TIENDA DE TORTAS & POSTRES</p>
+      </div>
+    </div>
+    <div class="encabezado_acciones">
+      <a href="index.html" class="boton boton_contorno">← Volver a la Tienda</a>
+    </div>
+  </header>
+
+  <main class="contenedor_principal" style="display: flex; justify-content: center; align-items: center;">
+    <div class="pedido_resumen" style="width: 100%; max-width: 450px;">
+      
+      <div class="payment-tabs" style="justify-content: center; margin-bottom: 20px;">
+        <button type="button" id="tabLogin" class="boton boton_contorno btn--active-tab" onclick="cambiarVista('login')">Iniciar Sesión</button>
+        <button type="button" id="tabRegistro" class="boton boton_contorno" onclick="cambiarVista('registro')">Crear Cuenta</button>
+      </div>
+
+      <form id="loginForm" class="formulario">
+        <h2 class="catalogo_titulo" style="text-align: center;">Ingresa a tu Cuenta</h2>
+        <div class="campo_grupo">
+          <label for="loginEmail" class="campo_etiqueta">Correo Electrónico:</label>
+          <input type="email" id="loginEmail" class="campo_input" placeholder="tucorreo@gmail.com" required>
+        </div>
+        <div class="campo_grupo">
+          <label for="loginPass" class="campo_etiqueta">Contraseña:</label>
+          <div style="position: relative; width: 100%;">
+            <input type="password" id="loginPass" class="campo_input" placeholder="••••••••" style="width: 100%; padding-right: 65px; box-sizing: border-box;" required>
+            <button type="button" id="toggleLoginPass" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; font-size: 0.8rem; font-weight: 600; color: #4A2E2B;">Mostrar</button>
+          </div>
+        </div>
+        <button type="submit" class="boton boton_carrito boton_completo">Ingresar</button>
+      </form>
+
+      <form id="registroForm" class="formulario" style="display: none;">
+        <h2 class="catalogo_titulo" style="text-align: center;">Crea tu Cuenta Dulce</h2>
+        
+        <div class="formulario_grid">
+          <div class="campo_grupo">
+            <label for="regNombre" class="campo_etiqueta">Nombre:</label>
+            <input type="text" id="regNombre" class="campo_input" placeholder="Ej. Ana" required>
+          </div>
+          <div class="campo_grupo">
+            <label for="regApellido" class="campo_etiqueta">Apellido:</label>
+            <input type="text" id="regApellido" class="campo_input" placeholder="Ej. Torres" required>
+          </div>
+        </div>
+
+        <div class="campo_grupo">
+          <label for="regCelular" class="campo_etiqueta">Número de Celular:</label>
+          <input type="tel" id="regCelular" class="campo_input" placeholder="Ej. 987654321" maxlength="9" required>
+        </div>
+
+        <div class="campo_grupo">
+          <label for="regEmail" class="campo_etiqueta">Correo Electrónico:</label>
+          <input type="email" id="regEmail" class="campo_input" placeholder="tucorreo@gmail.com" required>
+        </div>
+
+        <div class="campo_grupo">
+          <label for="regPass" class="campo_etiqueta">Contraseña:</label>
+          <div style="position: relative; width: 100%;">
+            <input type="password" id="regPass" class="campo_input" placeholder="Mínimo 4 caracteres" minlength="4" style="width: 100%; padding-right: 65px; box-sizing: border-box;" required>
+            <button type="button" id="toggleRegPass" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; font-size: 0.8rem; font-weight: 600; color: #4A2E2B;">Mostrar</button>
+          </div>
+        </div>
+
+        <button type="submit" class="boton boton_primario boton_completo">Registrarme</button>
+      </form>
+
+    </div>
+  </main>
+
+  <footer class="pie_pagina">
+    <div class="pie_inferior">
+      <p>© 2026 DULCE SELVA - Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    const usuarioBase = {
+      nombre: "Cliente",
+      apellido: "Dulce Selva",
+      celular: "987654321",
+      email: "cliente@dulceselva.com",
+      pass: "1234"
+    };
+
+    let listaUsuarios = JSON.parse(localStorage.getItem('usuariosDulceSelva')) || [];
+
+    if (!listaUsuarios.some(u => u.email === usuarioBase.email)) {
+      listaUsuarios.push(usuarioBase);
+      localStorage.setItem('usuariosDulceSelva', JSON.stringify(listaUsuarios));
+    }
+
+    function cambiarVista(vista) {
+      const loginForm = document.getElementById('loginForm');
+      const registroForm = document.getElementById('registroForm');
+      const tabLogin = document.getElementById('tabLogin');
+      const tabRegistro = document.getElementById('tabRegistro');
+
+      if (vista === 'login') {
+        loginForm.style.display = 'flex';
+        registroForm.style.display = 'none';
+        tabLogin.classList.add('btn--active-tab');
+        tabRegistro.classList.remove('btn--active-tab');
+      } else {
+        loginForm.style.display = 'none';
+        registroForm.style.display = 'flex';
+        tabRegistro.classList.add('btn--active-tab');
+        tabLogin.classList.remove('btn--active-tab');
+      }
+    }
+
+    function configurarCampoClave(idInput, idBoton) {
+      const input = document.getElementById(idInput);
+      const boton = document.getElementById(idBoton);
+      if (!input || !boton) return;
+
+      let timer;
+      let fijaVisible = false;
+
+      input.addEventListener('input', () => {
+        if (fijaVisible) return;
+        input.type = 'text';
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          input.type = 'password';
+        }, 700);
+      });
+
+      boton.addEventListener('click', () => {
+        fijaVisible = !fijaVisible;
+        clearTimeout(timer);
+        input.type = fijaVisible ? 'text' : 'password';
+        boton.textContent = fijaVisible ? 'Ocultar' : 'Mostrar';
+      });
+    }
+
+    configurarCampoClave('loginPass', 'toggleLoginPass');
+    configurarCampoClave('regPass', 'toggleRegPass');
+
+    document.getElementById('registroForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nombre = document.getElementById('regNombre').value.trim();
+      const apellido = document.getElementById('regApellido').value.trim();
+      const celular = document.getElementById('regCelular').value.trim();
+      const email = document.getElementById('regEmail').value.trim().toLowerCase();
+      const pass = document.getElementById('regPass').value.trim();
+
+      listaUsuarios = JSON.parse(localStorage.getItem('usuariosDulceSelva')) || [];
+
+      const existe = listaUsuarios.find(u => u.email === email);
+      if (existe) {
+        alert("Este correo ya está registrado. Inicia sesión con tu contraseña.");
+        cambiarVista('login');
+        document.getElementById('loginEmail').value = email;
+        return;
+      }
+
+      const nuevoUsuario = { nombre, apellido, celular, email, pass };
+      listaUsuarios.push(nuevoUsuario);
+      localStorage.setItem('usuariosDulceSelva', JSON.stringify(listaUsuarios));
+      localStorage.setItem('usuarioActivoDulceSelva', JSON.stringify(nuevoUsuario));
+
+      alert(`Cuenta creada con éxito. Bienvenido(a), ${nombre} ${apellido}.`);
+      window.location.href = 'index.html';
+    });
+
+    document.getElementById('loginForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+      const pass = document.getElementById('loginPass').value.trim();
+
+      listaUsuarios = JSON.parse(localStorage.getItem('usuariosDulceSelva')) || [];
+
+      const usuarioValido = listaUsuarios.find(u => u.email === email && u.pass === pass);
+      if (!usuarioValido) {
+        alert("Correo o contraseña incorrectos.");
+        return;
+      }
+
+      localStorage.setItem('usuarioActivoDulceSelva', JSON.stringify(usuarioValido));
+      alert(`Bienvenido(a), ${usuarioValido.nombre}.`);
+      window.location.href = 'index.html';
+    });
+  </script>
+</body>
+</html>
 
