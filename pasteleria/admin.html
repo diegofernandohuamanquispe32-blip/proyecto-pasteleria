@@ -1,1 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Administrador - DULCE SELVA</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="encabezado">
+    <div class="encabezado_marca">
+      <div class="encabezado_titulos">
+        <h1 class="encabezado_nombre">DULCE SELVA</h1>
+        <p class="encabezado_subtitulo">PANEL DE ADMINISTRACIÓN</p>
+      </div>
+    </div>
+    <div class="encabezado_acciones">
+      <a href="index.html" class="boton boton_contorno">← Ver Tienda</a>
+      <button type="button" id="btnCerrarAdmin" class="boton boton_carrito">Cerrar Panel</button>
+    </div>
+  </header>
+
+  <main class="contenedor_principal">
+    <section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 25px;">
+      <div class="pedido_resumen" style="text-align: center;">
+        <span class="etiqueta_precio">INGRESOS TOTALES</span>
+        <h2 id="totalIngresos" style="color: #4A2E2B; font-size: 1.6rem; margin-top: 5px;">S/ 0.00</h2>
+      </div>
+      <div class="pedido_resumen" style="text-align: center;">
+        <span class="etiqueta_precio">PEDIDOS RECIBIDOS</span>
+        <h2 id="totalPedidos" style="color: #E04D53; font-size: 1.6rem; margin-top: 5px;">0</h2>
+      </div>
+      <div class="pedido_resumen" style="text-align: center;">
+        <span class="etiqueta_precio">CLIENTES REGISTRADOS</span>
+        <h2 id="totalClientes" style="color: #3d6b52; font-size: 1.6rem; margin-top: 5px;">0</h2>
+      </div>
+      <div class="pedido_resumen" style="text-align: center;">
+        <span class="etiqueta_precio">PRODUCTOS EN CATÁLOGO</span>
+        <h2 id="totalProductos" style="color: #4A2E2B; font-size: 1.6rem; margin-top: 5px;">0</h2>
+      </div>
+    </section>
+
+    <div class="payment-tabs" style="margin-bottom: 20px; flex-wrap: wrap;">
+      <button type="button" id="tabPedidos" class="boton boton_contorno btn--active-tab" onclick="cambiarSeccionAdmin('pedidos')">Gestión de Pedidos</button>
+      <button type="button" id="tabProductos" class="boton boton_contorno" onclick="cambiarSeccionAdmin('productos')">Catálogo y Stock</button>
+      <button type="button" id="tabReservas" class="boton boton_contorno" onclick="cambiarSeccionAdmin('reservas')">Reservas Personalizadas</button>
+      <button type="button" id="tabClientes" class="boton boton_contorno" onclick="cambiarSeccionAdmin('clientes')">Clientes Registrados</button>
+    </div>
+
+    <section id="seccionPedidos" class="pedido_resumen">
+      <div class="encabezado_catalogo">
+        <h2 class="catalogo_titulo">Pedidos de Clientes</h2>
+        <button type="button" class="boton boton_contorno" onclick="cargarPedidosAdmin()">Actualizar Lista</button>
+      </div>
+      <div id="listaPedidosAdmin" style="display: flex; flex-direction: column; gap: 12px;"></div>
+    </section>
+
+    <section id="seccionProductos" style="display: none;">
+      <div style="display: grid; grid-template-columns: 1fr; gap: 25px;">
+        <div class="pedido_resumen">
+          <h2 class="catalogo_titulo" style="margin-bottom: 15px;">Agregar Nuevo Producto</h2>
+          <form id="formNuevoProducto" class="formulario formulario_grid">
+            <div class="campo_grupo">
+              <label for="prodNombre" class="campo_etiqueta">Nombre del Producto:</label>
+              <input type="text" id="prodNombre" class="campo_input" placeholder="Ej. Torta Tres Leches" required>
+            </div>
+            <div class="campo_grupo">
+              <label for="prodCategoria" class="campo_etiqueta">Categoría:</label>
+              <select id="prodCategoria" class="campo_input" required>
+                <option value="Tortas Finas">Tortas Finas</option>
+                <option value="Paiss & Tartas">Paiss & Tartas</option>
+                <option value="Cupcakes">Cupcakes</option>
+                <option value="Postres Fríos">Postres Fríos</option>
+              </select>
+            </div>
+            <div class="campo_grupo">
+              <label for="prodPrecio" class="campo_etiqueta">Precio (S/):</label>
+              <input type="number" id="prodPrecio" class="campo_input" step="0.50" min="1" placeholder="Ej. 65.00" required>
+            </div>
+            <div class="campo_grupo">
+              <label for="prodStock" class="campo_etiqueta">Stock Disponible (0 = Agotado):</label>
+              <input type="number" id="prodStock" class="campo_input" min="0" value="10" required>
+            </div>
+            <div class="campo_grupo campo_completo">
+              <label for="prodImagen" class="campo_etiqueta">URL de Imagen (o ruta local):</label>
+              <input type="text" id="prodImagen" class="campo_input" placeholder="imagen/3 leches.jpg" required>
+            </div>
+            <div class="campo_grupo campo_completo">
+              <label for="prodDescripcion" class="campo_etiqueta">Descripción:</label>
+              <input type="text" id="prodDescripcion" class="campo_input" placeholder="Ingredientes y presentación..." required>
+            </div>
+            <button type="submit" class="boton boton_carrito boton_completo campo_completo">Guardar en el Catálogo</button>
+          </form>
+        </div>
+
+        <div class="pedido_resumen">
+          <h2 class="catalogo_titulo" style="margin-bottom: 15px;">Productos Activos y Edición de Stock</h2>
+          <div id="listaProductosAdmin" style="display: flex; flex-direction: column; gap: 10px;"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="seccionReservas" class="pedido_resumen" style="display: none;">
+      <div class="encabezado_catalogo">
+        <h2 class="catalogo_titulo">Reservas de Tortas Personalizadas</h2>
+        <button type="button" class="boton boton_contorno" onclick="cargarReservasAdmin()">Actualizar Lista</button>
+      </div>
+      <div id="listaReservasAdmin" style="display: flex; flex-direction: column; gap: 12px;"></div>
+    </section>
+
+    <section id="seccionClientes" class="pedido_resumen" style="display: none;">
+      <div class="encabezado_catalogo">
+        <h2 class="catalogo_titulo">Clientes Registrados en la Plataforma</h2>
+        <button type="button" class="boton boton_contorno" onclick="cargarClientesAdmin()">Actualizar Lista</button>
+      </div>
+      <div id="listaClientesAdmin" style="display: flex; flex-direction: column; gap: 10px;"></div>
+    </section>
+  </main>
+
+  <footer class="pie_pagina">
+    <div class="pie_inferior">
+      <p>© 2026 DULCE SELVA - Administración Interna.</p>
+    </div>
+  </footer>
+
+  <script>
+    if (sessionStorage.getItem('adminAutenticado') !== 'true') {
+      const clave = prompt("Ingresa la contraseña de administrador:");
+      if (clave === "admin123") {
+        sessionStorage.setItem('adminAutenticado', 'true');
+      } else {
+        alert("Acceso denegado.");
+        window.location.href = 'index.html';
+      }
+    }
+
+    document.getElementById('btnCerrarAdmin').addEventListener('click', () => {
+      sessionStorage.removeItem('adminAutenticado');
+      window.location.href = 'index.html';
+    });
+
+    function cambiarSeccionAdmin(seccion) {
+      document.getElementById('seccionPedidos').style.display = seccion === 'pedidos' ? 'block' : 'none';
+      document.getElementById('seccionProductos').style.display = seccion === 'productos' ? 'block' : 'none';
+      document.getElementById('seccionReservas').style.display = seccion === 'reservas' ? 'block' : 'none';
+      document.getElementById('seccionClientes').style.display = seccion === 'clientes' ? 'block' : 'none';
+
+      document.getElementById('tabPedidos').classList.toggle('btn--active-tab', seccion === 'pedidos');
+      document.getElementById('tabProductos').classList.toggle('btn--active-tab', seccion === 'productos');
+      document.getElementById('tabReservas').classList.toggle('btn--active-tab', seccion === 'reservas');
+      document.getElementById('tabClientes').classList.toggle('btn--active-tab', seccion === 'clientes');
+    }
+
+    function cargarPedidosAdmin() {
+      const contenedor = document.getElementById('listaPedidosAdmin');
+      const historial = JSON.parse(localStorage.getItem('historialComprasDulceSelva')) || [];
+
+      document.getElementById('totalPedidos').textContent = historial.length;
+      const ingresos = historial
+        .filter(p => p.estado !== 'Cancelado')
+        .reduce((suma, p) => suma + Number(p.total), 0);
+      document.getElementById('totalIngresos').textContent = `S/ ${ingresos.toFixed(2)}`;
+
+      if (historial.length === 0) {
+        contenedor.innerHTML = '<p style="text-align: center; color: #777; padding: 20px;">No hay pedidos registrados todavía.</p>';
+        return;
+      }
+
+      contenedor.innerHTML = historial.map((pedido, index) => {
+        const estadoActual = pedido.estado || 'Pendiente';
+        return `
+          <div style="border: 1px solid #E8DFD8; border-radius: 10px; padding: 15px; background: #FAF6F0;">
+            <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 6px;">
+              <div>
+                <strong>Pedido #${String(pedido.idPedido).slice(-5)}</strong> — 
+                <span>${pedido.nombreCliente || 'Cliente'} (${pedido.emailUsuario})</span>
+              </div>
+              <span style="font-size: 0.85rem; color: #666;">Comprado: ${pedido.fecha}</span>
+            </div>
+            <p style="font-size: 0.85rem; color: #4A2E2B; margin-bottom: 6px;">
+              <strong>Entrega:</strong> ${pedido.fechaEntrega || 'Por confirmar'} | <strong>Pago:</strong> ${pedido.metodoPago || 'Registrado'}
+            </p>
+            <ul style="margin: 8px 0; padding-left: 20px; font-size: 0.9rem;">
+              ${pedido.productos.map(prod => `<li>${prod.nombre} (S/ ${Number(prod.precio).toFixed(2)})</li>`).join('')}
+            </ul>
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 10px; padding-top: 10px; border-top: 1px dashed #D8C3B0;">
+              <strong>Total: S/ ${Number(pedido.total).toFixed(2)}</strong>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <label style="font-size: 0.85rem; font-weight: bold;">Estado:</label>
+                <select onchange="cambiarEstadoPedido(${index}, this.value)" class="catalogo_select">
+                  <option value="Pendiente" ${estadoActual === 'Pendiente' ? 'selected' : ''}>Pendiente</option>
+                  <option value="En preparación" ${estadoActual === 'En preparación' ? 'selected' : ''}>En preparación</option>
+                  <option value="Entregado" ${estadoActual === 'Entregado' ? 'selected' : ''}>Entregado</option>
+                  <option value="Cancelado" ${estadoActual === 'Cancelado' ? 'selected' : ''}>Cancelado</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function cambiarEstadoPedido(index, nuevoEstado) {
+      const historial = JSON.parse(localStorage.getItem('historialComprasDulceSelva')) || [];
+      if (historial[index]) {
+        historial[index].estado = nuevoEstado;
+        localStorage.setItem('historialComprasDulceSelva', JSON.stringify(historial));
+        cargarPedidosAdmin();
+      }
+    }
+
+    function cargarProductosAdmin() {
+      const contenedor = document.getElementById('listaProductosAdmin');
+      const productosGuardados = JSON.parse(localStorage.getItem('productosDulceSelva')) || [];
+
+      document.getElementById('totalProductos').textContent = productosGuardados.length;
+
+      if (productosGuardados.length === 0) {
+        contenedor.innerHTML = '<p style="text-align: center; color: #777; padding: 15px;">Abre index.html primero para inicializar el catálogo base o agrega un producto arriba.</p>';
+        return;
+      }
+
+      contenedor.innerHTML = productosGuardados.map((prod, index) => {
+        const stockActual = prod.stock !== undefined ? Number(prod.stock) : 5;
+        const agotado = stockActual <= 0;
+        return `
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #E8DFD8; padding: 12px 0; gap: 12px; flex-wrap: wrap;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <img src="${prod.imagen}" alt="${prod.nombre}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px; ${agotado ? 'filter: grayscale(100%); opacity: 0.6;' : ''}">
+            <div>
+              <strong>${prod.nombre}</strong> <span style="font-size: 0.8rem; color: #777;">(${prod.categoria})</span>
+              <p style="font-size: 0.85rem; color: #4A2E2B; font-weight: bold;">
+                S/ ${Number(prod.precio).toFixed(2)} — 
+                <span style="color: ${agotado ? '#E04D53' : '#3d6b52'};">${agotado ? 'AGOTADO' : `Disponible: ${stockActual} unid.`}</span>
+              </p>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+            <label style="font-size: 0.8rem; font-weight: bold; color: #4A2E2B;">Stock:</label>
+            <input type="number" id="inputStock_${index}" value="${stockActual}" min="0" style="width: 68px; padding: 6px 8px; border-radius: 8px; border: 1px solid #D8C3B0; text-align: center; font-weight: bold;">
+            <button type="button" class="boton boton_primario" style="padding: 6px 12px;" onclick="actualizarStockExacto(${index})">Guardar</button>
+            <button type="button" class="boton boton_contorno" style="padding: 6px 12px;" onclick="marcarAgotadoRapido(${index})">Agotar (0)</button>
+            <button type="button" class="boton boton_carrito" style="padding: 6px 12px;" onclick="eliminarProductoAdmin(${index})">Eliminar</button>
+          </div>
+        </div>
+      `;
+      }).join('');
+    }
+
+    function actualizarStockExacto(index) {
+      const productosGuardados = JSON.parse(localStorage.getItem('productosDulceSelva')) || [];
+      const input = document.getElementById(`inputStock_${index}`);
+      if (!productosGuardados[index] || !input) return;
+
+      const nuevoStock = Math.max(0, Number(input.value));
+      productosGuardados[index].stock = nuevoStock;
+      localStorage.setItem('productosDulceSelva', JSON.stringify(productosGuardados));
+      cargarProductosAdmin();
+      alert(`Stock de "${productosGuardados[index].nombre}" actualizado a ${nuevoStock} unidades.`);
+    }
+
+    function marcarAgotadoRapido(index) {
+      const productosGuardados = JSON.parse(localStorage.getItem('productosDulceSelva')) || [];
+      if (!productosGuardados[index]) return;
+      productosGuardados[index].stock = 0;
+      localStorage.setItem('productosDulceSelva', JSON.stringify(productosGuardados));
+      cargarProductosAdmin();
+    }
+
+    document.getElementById('formNuevoProducto').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const productosGuardados = JSON.parse(localStorage.getItem('productosDulceSelva')) || [];
+
+      const nuevoProducto = {
+        id: Date.now(),
+        nombre: document.getElementById('prodNombre').value.trim(),
+        categoria: document.getElementById('prodCategoria').value,
+        precio: Number(document.getElementById('prodPrecio').value),
+        stock: Number(document.getElementById('prodStock').value),
+        imagen: document.getElementById('prodImagen').value.trim(),
+        descripcion: document.getElementById('prodDescripcion').value.trim(),
+        destacado: false
+      };
+
+      productosGuardados.push(nuevoProducto);
+      localStorage.setItem('productosDulceSelva', JSON.stringify(productosGuardados));
+
+      e.target.reset();
+      cargarProductosAdmin();
+      alert("Producto agregado correctamente.");
+    });
+
+    function eliminarProductoAdmin(index) {
+      if (!confirm("¿Seguro que deseas quitar este producto de la tienda?")) return;
+      const productosGuardados = JSON.parse(localStorage.getItem('productosDulceSelva')) || [];
+      productosGuardados.splice(index, 1);
+      localStorage.setItem('productosDulceSelva', JSON.stringify(productosGuardados));
+      cargarProductosAdmin();
+    }
+
+    function cargarReservasAdmin() {
+      const contenedor = document.getElementById('listaReservasAdmin');
+      const reservas = JSON.parse(localStorage.getItem('reservasDulceSelva')) || [];
+
+      if (reservas.length === 0) {
+        contenedor.innerHTML = '<p style="text-align: center; color: #777; padding: 20px;">No hay reservas personalizadas registradas.</p>';
+        return;
+      }
+
+      contenedor.innerHTML = reservas.map((res, index) => {
+        const estadoActual = res.estado || 'Pendiente';
+        return `
+          <div style="border: 1px solid #E8DFD8; border-radius: 10px; padding: 15px; background: #FAF6F0;">
+            <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 8px;">
+              <div>
+                <strong>Reserva #${String(res.idReserva).slice(-5)}</strong> — 
+                <span>${res.nombre} (${res.telefono})</span>
+              </div>
+              <span style="font-size: 0.85rem; color: #666;">Entrega: <strong>${res.fechaEntrega}</strong></span>
+            </div>
+            <p style="font-size: 0.9rem; margin: 6px 0;"><strong>Pedido:</strong> ${res.detalle}</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px; padding-top: 10px; border-top: 1px dashed #D8C3B0;">
+              <span style="font-size: 0.8rem; color: #777;">Usuario: ${res.emailUsuario}</span>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <label style="font-size: 0.85rem; font-weight: bold;">Estado:</label>
+                <select onchange="cambiarEstadoReserva(${index}, this.value)" class="catalogo_select">
+                  <option value="Pendiente" ${estadoActual === 'Pendiente' ? 'selected' : ''}>Pendiente</option>
+                  <option value="Cotizado / En preparación" ${estadoActual === 'Cotizado / En preparación' ? 'selected' : ''}>Cotizado / En preparación</option>
+                  <option value="Entregado" ${estadoActual === 'Entregado' ? 'selected' : ''}>Entregado</option>
+                  <option value="Cancelado" ${estadoActual === 'Cancelado' ? 'selected' : ''}>Cancelado</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function cambiarEstadoReserva(index, nuevoEstado) {
+      const reservas = JSON.parse(localStorage.getItem('reservasDulceSelva')) || [];
+      if (reservas[index]) {
+        reservas[index].estado = nuevoEstado;
+        localStorage.setItem('reservasDulceSelva', JSON.stringify(reservas));
+        cargarReservasAdmin();
+      }
+    }
+
+    function cargarClientesAdmin() {
+      const contenedor = document.getElementById('listaClientesAdmin');
+      const usuarios = JSON.parse(localStorage.getItem('usuariosDulceSelva')) || [];
+      const historial = JSON.parse(localStorage.getItem('historialComprasDulceSelva')) || [];
+
+      document.getElementById('totalClientes').textContent = usuarios.length;
+
+      if (usuarios.length === 0) {
+        contenedor.innerHTML = '<p style="text-align: center; color: #777; padding: 20px;">No hay clientes registrados todavía.</p>';
+        return;
+      }
+
+      contenedor.innerHTML = usuarios.map(u => {
+        const pedidosCliente = historial.filter(p => p.emailUsuario === u.email && p.estado !== 'Cancelado');
+        const totalGastado = pedidosCliente.reduce((acc, p) => acc + Number(p.total), 0);
+        const inicial = (u.email || u.nombre || 'U').trim().charAt(0).toUpperCase();
+
+        return `
+          <div style="display: flex; justify-content: space-between; align-items: center; border: 1px solid #E8DFD8; border-radius: 10px; padding: 12px 15px; background: #FAF6F0; flex-wrap: wrap; gap: 10px;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <span class="avatar_inicial" style="width: 34px; height: 34px; font-size: 0.95rem;">${inicial}</span>
+              <div>
+                <strong>${u.nombre} ${u.apellido}</strong>
+                <p style="font-size: 0.85rem; color: #555;">Correo: ${u.email} | Celular: ${u.celular || 'No registrado'}</p>
+              </div>
+            </div>
+            <div style="text-align: right; font-size: 0.85rem;">
+              <span style="display: block; color: #4A2E2B; font-weight: bold;">Pedidos válidos: ${pedidosCliente.length}</span>
+              <span style="color: #3d6b52; font-weight: bold;">Consumo total: S/ ${totalGastado.toFixed(2)}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    cargarPedidosAdmin();
+    cargarProductosAdmin();
+    cargarReservasAdmin();
+    cargarClientesAdmin();
+  </script>
+</body>
+</html>
 
