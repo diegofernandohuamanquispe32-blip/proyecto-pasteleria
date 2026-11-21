@@ -162,6 +162,7 @@ const cargarProductosAPI = async () => {
   }
 };
 
+
 const renderizarproductos = (listaproductos) => {
   const contenedor = document.querySelector(
     ".cuadricula_productos"
@@ -175,3 +176,19 @@ const renderizarproductos = (listaproductos) => {
     return;
   }
 };
+
+contenedor.innerHTML = listaproductos
+  .map(({ id, nombre, categoria, precio, descripcion, imagen, destacado, stock }) => {
+    const cantidadDisponible = stock !== undefined ? Number(stock) : 5;
+    const estaAgotado = cantidadDisponible <= 0;
+
+    return `
+      <article class="tarjeta">
+        <h3>${nombre}</h3>
+        <p>${descripcion}</p>
+        <span>S/ ${Number(precio).toFixed(2)}</span>
+      </article>
+    `;
+  })
+  .join("");
+
